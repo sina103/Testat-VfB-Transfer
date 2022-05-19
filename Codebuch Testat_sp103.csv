@@ -1,0 +1,24 @@
+CODEBUCH,
+Erhoben wurden die Transfers für den jetzigen Kader vom VfB Stuttgart.,
+Quelle: https://www.transfermarkt.de/vfb-stuttgart/startseite/verein/79,
+"Grundregeln: keine Leerzeichen, keine Sonderzeichen",
+,
+Wert,Kommentar
+edgelist,Grundregel: Die Edgelist darf pro Spalte immer nur einen Wert enthalten. Bis auf die ID idealerweise numerisch codiert (als Zahl).
+from,Von welchem Verein kommt der Spieler
+to ,ID des Spieler (Rückennummer)
+weight,"Transfersumme in 100.000 Euro Schritten, gerundet falls abweichend"
+season,Transferfenster
+,
+Außerdem die Zugehörigkeit nach Nationalität des Kaders in der edgelist:,
+,
+from,ID des Spielers
+to,Nationalität
+,
+nodelist,Grundregel: die IDs der Nodelist müssen mit den IDs der Edgelist komplett übereinstimmen. Ausprägungen der Attribute in der Regel numerisch definieren.
+id,Rückennummer oder Vereinsname
+name,Spieler oder Vereinsname
+country,Land 
+type,"1 = Spieler, 2 = Verein"
+,
+NA,"definiert fehlende Werte, bei der Datenerhebung das Feld einfach leer lassen, R rechnet NAs (missing values) automatisch raus.."
