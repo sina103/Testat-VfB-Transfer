@@ -1,0 +1,71 @@
+---
+title: "Testat 18.05.-20.05.2022 "
+author: "Sina Peller | sp103@hdm-stuttgart.de"
+date: "Sommersemester 22"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: 3
+    number_sections: yes
+subtitle: "Transfers zum VfB Stuttgart"
+---
+
+
+```{r Gesamnetzwerk erstellen, echo=FALSE}
+
+library(igraph)
+
+# Einlesen der Edge- und Nodelist
+el <- read.csv("https://raw.githubusercontent.com/sina103/Testat-VfB-Transfer/main/Edgelist_sp103.csv", header=T, as.is=T, sep = ",")
+nodes <- read.csv("https://raw.githubusercontent.com/sina103/Testat-VfB-Transfer/main/Nodelist_sp103.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(el)
+
+# Zusammenführen von Edge- und Nodelist als igraph-Objekt s
+testat <- graph_from_data_frame(d=edgematrix, directed=T)
+testat
+```
+# Netzwerkvisualisierung
+
+```{r Netzwerk visualisieren, fig.height=15, fig.width=10, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+
+
+plot(testat, 
+     layout=layout_nicely(testat),
+     main="Transfers zum VfB Stuttgart",
+     sub="Kader VfB",
+     vertex.color="gold",
+     vertex.frame.color=NA,
+     vertex.size=degree(testat),
+     vertex.frame.color="grey80",
+     edge.color="black",
+     edge.curved=.2,
+     edge.arrow.size=.2)
+
+```````````
+Codebuch:
+
+edgelist:
+
+from = Von welchem Verein kommt der Spieler				
+to = ID des Spieler (Rückennummer)				
+weight = Transfersumme in 100.000 Euro Schritten, gerundet falls abweichend				
+season = Transferfenster
+
+Außerdem die Zugehörigkeit nach Nationalität des Kaders in der edgelist:				
+				
+from = ID des Spielers			
+to = Nationalität
+
+nodelist:
+
+id = Rückennummer oder Vereinsname	
+name = Spieler oder Vereinsname	
+country = Land 	
+type = 1 = Spieler, 2 = Verein
+
+
+
